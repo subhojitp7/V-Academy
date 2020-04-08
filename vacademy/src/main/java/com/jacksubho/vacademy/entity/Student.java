@@ -1,6 +1,5 @@
 package com.jacksubho.vacademy.entity;
 
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,24 +7,18 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 
 @Entity
-public class Instructor extends AbstractEntity {
+public class Student extends AbstractEntity {
 
 	private String firstName;
 	private String lastName;
-	private String subject;
 	private String phone;
 	@Column(unique=true)
 	private String email;
 	private String password;
-	@OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Assignments> assignments;
-	@OneToMany(mappedBy = "instructor", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	private List<Videos> videos;
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-	private Set<Student> student;
+	private Set<Instructor> instructor;
 
 	public String getFirstName() {
 		return firstName;
@@ -41,14 +34,6 @@ public class Instructor extends AbstractEntity {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
-	}
-
-	public String getSubject() {
-		return subject;
-	}
-
-	public void setSubject(String subject) {
-		this.subject = subject;
 	}
 
 	public String getPhone() {
@@ -75,28 +60,12 @@ public class Instructor extends AbstractEntity {
 		this.password = password;
 	}
 
-	public List<Assignments> getAssignments() {
-		return assignments;
+	public Set<Instructor> getInstructor() {
+		return instructor;
 	}
 
-	public void setAssignments(List<Assignments> assignments) {
-		this.assignments = assignments;
-	}
-
-	public List<Videos> getVideos() {
-		return videos;
-	}
-
-	public void setVideos(List<Videos> videos) {
-		this.videos = videos;
-	}
-
-	public Set<Student> getStudent() {
-		return student;
-	}
-
-	public void setStudent(Set<Student> student) {
-		this.student = student;
+	public void setInstructor(Set<Instructor> instructor) {
+		this.instructor = instructor;
 	}
 
 }
